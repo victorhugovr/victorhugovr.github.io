@@ -1,58 +1,202 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Adrián Vigil</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-    
-    <title>VICTOR VACA</title>
+    :root {
+      --bg: #ffffff;
+      --text: #111111;
+      --card: #f0f0f0;
+      --btn-bg: #111111;
+      --btn-text: #ffffff;
+      --toggle-bg: #cccccc;
+      --icon-color: #111111;
+    }
+    body.dark {
+      --bg: #000000;
+      --text: #f0f0f0;
+      --card: #1a1a1a;
+      --btn-bg: #f0f0f0;
+      --btn-text: #000000;
+      --toggle-bg: #444444;
+      --icon-color: #f0f0f0;
+    }
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="assets/style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      transition: background-color 0.3s, color 0.3s;
+      padding: 2rem 1rem;
+    }
+
+    /* Toggle */
+    .toggle-wrap {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--text);
+    }
+    .toggle {
+      width: 46px; height: 24px;
+      background: var(--toggle-bg);
+      border-radius: 999px;
+      cursor: pointer;
+      position: relative;
+      transition: background 0.3s;
+    }
+    .toggle::after {
+      content: '';
+      position: absolute;
+      width: 18px; height: 18px;
+      background: white;
+      border-radius: 50%;
+      top: 3px; left: 3px;
+      transition: left 0.3s;
+    }
+    body.dark .toggle::after { left: 25px; }
+
+    /* Profile */
+    .card {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .avatar {
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--text);
+      /* 👇 CAMBIA ESTA URL POR EL LINK DE TU FOTO */
+      content: url('./Users/victor/GitHub/Profile_GitHub.png');
+      margin-bottom: 1rem;
+    }
+
+    h1 { font-size: 1.5rem; margin-bottom: 0.3rem; }
+    .subtitle { font-size: 0.9rem; opacity: 0.65; margin-bottom: 1.8rem; }
+
+    /* Buttons */
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 0.9rem;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .btn:hover { opacity: 0.85; transform: scale(1.02); }
+
+    /* Social icons */
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .socials a {
+      color: var(--icon-color);
+      font-size: 1.6rem;
+      transition: opacity 0.2s, transform 0.15s;
+      text-decoration: none;
+    }
+    .socials a:hover { opacity: 0.7; transform: scale(1.15); }
+
+    footer {
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      opacity: 0.45;
+    }
+  </style>
 </head>
-
 <body>
-    <div class="container">
-    <div class="col-xs-12">
-            <div class="text-center" style="padding-top: 30px; padding-bottom: 30px;">
-                <img class="backdrop linktree">
-                <h2 style="color: #ffffff; padding-top: 20px;">Mi curso de Git y Github</h2>
-            </div>
+
+  <!-- Toggle Dark/Day Mode -->
+  <div class="toggle-wrap">
+    <span id="toggle-label">Dark Mode</span>
+    <div class="toggle" id="toggle" onclick="toggleMode()"></div>
+  </div>
+
+  <div class="card">
+
+    <!--
+      ============================================
+      FOTO DE PERFIL
+      Cambia la URL dentro de src="" por el link
+      de tu imagen (puede ser una URL externa o
+      una ruta local, ej: ./assets/img/profile.png)
+      ============================================
+    -->
+    <img
+      class="avatar"
+      src="./Users/victor/GitHub/Profile_GitHub.png"
+      alt="Foto de perfil de Victor Vaca"
+    />
+
+    <h1>Victor Vaca</h1>
+    <p class="subtitle">Software Developer</p>
+
+    <!-- Botón: Website -->
+    <a class="btn" href="https://victorhugovr.github.io" target="_blank">Website</a>
+
+    <!-- Botón: Contacto -->
+    <a class="btn" href="mailto:victorhvr.net@gmail.com">Contact me!</a>
+
+    <!-- Iconos sociales -->
+    <div class="socials">
+      <!-- Cambia el href por tu perfil de GitHub -->
+      <a href="https://github.com/victorhugovr" target="_blank" aria-label="GitHub">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <!-- Cambia el href por tu perfil de LinkedIn -->
+      <a href="https://linkedin.com/in/" target="_blank" aria-label="LinkedIn">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
     </div>
-    </div>
 
+  </div>
 
-    <div class="container">
-    <div class="col-xs-12">
-            <div class="text-center">
-                <div style="padding-bottom: 30px;">
-                    <button onclick="location.href='https://platzi.com/cursos/docker-fundamentos/'" type="button" class="btn btn-outline-light shake" style="width: 80%; padding-top:10px; padding-bottom:10px; font-weight: 800;">Mi curso de Docker</button>
-                </div>
-                <div style="padding-bottom: 30px;">
-                    <button onclick="location.href='http://aminespinoza.com'" type="button" class="btn btn-outline-light" style="width: 80%; padding-top:10px; padding-bottom:10px; font-weight: 600;">Mi sitio web</button>
-                </div>
-                <div style="padding-bottom: 30px;">
-                    <button onclick="location.href='https://www.linkedin.com/in/aminespinoza/'" type="button" class="btn btn-outline-light" style="width: 80%; padding-top:10px; padding-bottom:10px; font-weight: 600;">Conecta en mi perfil de LinkedIn</button>
-                </div>
-                <div style="padding-bottom: 30px;">
-                    <button onclick="location.href='https://www.instagram.com/aminespinoza10/'" type="button" class="btn btn-outline-light" style="width: 80%; padding-top:10px; padding-bottom:10px; font-weight: 600;">Visitame en Instagram</button>
-                </div>
-                <div style="padding-bottom: 30px;">
-                    <button onclick="location.href='https://www.youtube.com/aminespinoza'" type="button" class="btn btn-outline-light" style="width: 80%; padding-top:10px; padding-bottom:10px; font-weight: 600;">Mira mi canal de Youtube</button>
-                </div>
-            </div>
-    </div>
-    </div>
+  <footer>2025</footer>
 
-        <div class="text-center">
-            <a href="https://codepen.io/nightcl4w/pen/dEjreJ" style="color: #34312f;" target="_blank">Creado por OrderMerch</a>
-        </div>
+  <script>
+    const body = document.body;
+    const label = document.getElementById('toggle-label');
 
+    // Cargar preferencia guardada
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark');
+      label.textContent = 'Day Mode';
+    }
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <!-- This pre-lander was created by Brandon Nilsson -->
-    <!-- You're welcome to edit, reproduce and change this template as long as original contributation stays present on the website at all times.  -->
+    function toggleMode() {
+      body.classList.toggle('dark');
+      const isDark = body.classList.contains('dark');
+      label.textContent = isDark ? 'Day Mode' : 'Dark Mode';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+  </script>
 </body>
-
 </html>
